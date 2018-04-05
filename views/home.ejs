@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>Bugleev.com: Doctor Finder</title>
+  <meta name="description" content="Javascript project: Image generator" />
+  <meta name="keywords" content="Bugleev, Web development, unsplash, javascript, unsplash api, js" />
+  <meta name="author" content="bugleev.com" />
+  <link href="https://fonts.googleapis.com/css?family=Neuton|Alfa+Slab+One" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+
+  <style>
+    /* --main-color: #984b43;
+    --sec-color: #233237;
+    --highlight-color: #89d230;
+    --2nd-color: #18121e;
+    --3rd-color: #eac67a; */
+
+    body {
+      height: 100vh;
+      padding-top: 25px;
+
+      font-family: "Neuton", serif, "Alfa Slab One", cursive;
+      font-size: 1.3rem;
+    }
+
+    h2 {
+      text-shadow: 1px 1px 3px rgb(20, 20, 20);
+      margin-bottom: 50px;
+    }
+
+    .bio_href {
+      padding-bottom: 0.15rem;
+      transition: all 0.2s ease-in-out 0s;
+      color: #984b43;
+      text-decoration: none;
+    }
+
+    .bio_href:hover {
+      border-bottom: 5px solid rgba(152, 75, 67, 0.4);
+      color: #233237;
+      text-decoration: none;
+    }
+
+    .btn-light {
+      color: #212529;
+      background-color: rgba(255, 255, 255, 0);
+      border-color: rgba(255, 255, 255, 0);
+      position: absolute;
+      top: -2.4rem;
+      right: 1rem;
+    }
+
+    .btn-light.focus,
+    .btn-light:focus {
+      box-shadow: none;
+    }
+
+    .btn.btn-info,
+    .btn.btn-info:hover,
+    .btn.btn-info:focus,
+    .btn.btn-info:active,
+    .btn.btn-info.active,
+    .btn.btn-info:active:focus,
+    .btn.btn-info:active:hover,
+    .btn.btn-info.active:focus,
+    .btn.btn-info.active:hover {
+      background-color: #233237;
+      color: #ffffff;
+    }
+
+    .btn.btn-info:focus,
+    .btn.btn-info:active,
+    .btn.btn-info:hover {
+      box-shadow: 0 14px 26px -12px rgba(152, 75, 67, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(152, 75, 67, 0.21);
+    }
+
+    .bs-popover-top .arrow::after,
+    .bs-popover-auto[x-placement^="top"] .arrow::after {
+      border-top-color: #233237;
+    }
+
+    .btn.btn-info,
+    .btn.btn-info:hover,
+    .btn.btn-info:focus,
+    .btn.btn-info:active,
+    .btn.btn-info.active,
+    .btn.btn-info:active:focus,
+    .btn.btn-info:active:hover,
+    .btn.btn-info.active:focus,
+    .btn.btn-info.active:hover {
+      background-color: #233237;
+      color: #ffffff;
+    }
+
+    .btn.btn-primary.btn-simple,
+    .navbar .navbar-nav>li>a.btn.btn-primary.btn-simple {
+      background-color: transparent;
+      color: #984b43;
+      box-shadow: none;
+      padding: 0.5rem;
+      margin: 0;
+      border: none;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      will-change: box-shadow, transform;
+      transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn.btn-primary.btn-simple:hover,
+    .btn.btn-primary.btn-simple:focus,
+    .btn.btn-primary.btn-simple:active,
+    .navbar .navbar-nav>li>a.btn.btn-primary.btn-simple:hover,
+    .navbar .navbar-nav>li>a.btn.btn-primary.btn-simple:focus,
+    .navbar .navbar-nav>li>a.btn.btn-primary.btn-simple:active {
+      background-color: transparent;
+      color: #233237;
+    }
+
+    .form-control:focus {
+      border-color: #984b43;
+      box-shadow: 0 0 0 0.2rem rgba(152, 76, 67, 0.235);
+    }
+
+    .popover-body {
+      background-color: #233237;
+      color: #fff;
+    }
+
+    #helper {
+      position: relative;
+    }
+
+    h5 {
+      margin-bottom: 0;
+    }
+
+    p {
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+
+<body>
+  <h2 class="text-center col-10 mx-auto">Sexy Bot
+  </h2>
+  <h3 class="text-center col-10 mx-auto">
+    <%= text %>
+  </h3>
+  <p class="mx-auto text-center col-10">Примечание: После запуска бот будет работать пока не появится номерок</p>
+  <div class="container">
+    <form action="/" method="POST">
+      <div class="form-group col-12 col-md-6 col-lg-4 mx-auto">
+        <label for="exampleFormControlSelect1">Выбери врача для записи:</label>
+        <select class="form-control" name="doctor" id="exampleFormControlSelect1">
+          <option>ЛОР</option>
+          <option>Хирург</option>
+          <option>Невролог</option>
+          <option>Окулист</option>
+          <option>Аллерголог</option>
+          <option>Кардиолог</option>
+          <option>Хирург-ортопед</option>
+          <option>Дерматолог</option>
+        </select>
+      </div>
+      <div class="row mb-4 justify-content-center">
+        <input type="submit" class="btn btn-default btn-info" value="Запустить бота!">
+        </button>
+      </div>
+    </form>
+    <div class="row justify-content-center">
+      <a href="https://bugleev.com/#JS" class="btn btn-simple btn-primary btn-lg">
+        <i class="align-middle material-icons">keyboard_backspace
+        </i>
+        <span class="align-middle">Back to projects</span>
+      </a>
+    </div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script>
+
+  </script>
+</body>
+</body>
+
+</html>
