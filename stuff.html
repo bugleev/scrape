@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+
+
+
+  <script>
+    const Xarr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const Yaxis = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+
+    const Xaxis = Xarr.map(el => el.toString());
+    console.log(Xaxis);
+    const grid = [];
+    for (let i = 1; i <= 100; i++) {
+      grid.push(i)
+
+    }
+    console.log(grid);
+
+    function getOrientation() {
+      return (Math.random() > 0.5) ? "horizontal" : "vertical";
+    }
+
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    function getShips(n) {
+      let newShip = [];
+      let start;
+      let orientation = getOrientation();
+      if (orientation === "horizontal") {
+        console.log(orientation);
+
+        let x = getRandomInt(Xaxis.length - 1 - n);
+        let y = getRandomInt(Xaxis.length - 1);
+        let start = (parseInt(x.toString().concat(y.toString())));
+
+        newShip.push(start)
+        for (let i = 0; i < n - 1; i++) {
+          let x = newShip[i] + 1;
+          newShip.push(x)
+        }
+
+        console.log(newShip);
+      } else {
+        console.log(orientation);
+        // let x = Xarr[getRandomInt(Xaxis.length - 1)];
+        // let y = Yaxis[getRandomInt(Xaxis.length - 1 - n)];
+
+        // newShip.push({ x, y })
+        // for (let i = 0; i < n - 1; i++) {
+        //   console.log(Yaxis.indexOf(newShip[i]["y"]));
+        //   let y = Yaxis[Yaxis.indexOf(newShip[i]["y"]) + 1]
+
+        //   newShip.push({ x, y })
+        //   console.log(newShip);
+        // }
+      }
+
+
+
+    }
+
+    getShips(2);
+
+  </script>
+</body>
+
+</html>
